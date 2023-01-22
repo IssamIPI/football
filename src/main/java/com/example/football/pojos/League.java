@@ -3,6 +3,7 @@ package com.example.football.pojos;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -18,8 +19,6 @@ public class League {
     private Integer victoryPoints;
     private Integer defeatPoints;
     private Integer tiePoints;
-    @OneToMany(targetEntity = Team.class, mappedBy = "league")
-    private List<Team> teams = new ArrayList<>();
 
     @OneToMany(targetEntity = Journey.class, mappedBy = "league")
     private List<Journey> journeys = new ArrayList<>();
@@ -27,6 +26,8 @@ public class League {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+    @OneToMany(mappedBy = "league")
+    private Collection<Team> team;
 
     public League() {}
 
@@ -102,11 +103,11 @@ public class League {
         this.journeys = journeys;
     }
 
-    public List<Team> getTeams() {
-        return teams;
+    public Collection<Team> getTeams() {
+        return team;
     }
 
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
+    public void setTeams(Collection<Team> team) {
+        this.team = team;
     }
 }

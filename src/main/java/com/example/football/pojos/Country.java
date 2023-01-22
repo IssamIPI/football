@@ -2,6 +2,8 @@ package com.example.football.pojos;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
 public class Country {
     @Id
@@ -26,5 +28,16 @@ public class Country {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @OneToMany(mappedBy = "country")
+    private Collection<League> leagues;
+
+    public Collection<League> getLeagues() {
+        return leagues;
+    }
+
+    public void setLeagues(Collection<League> leagues) {
+        this.leagues = leagues;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.football.pojos;
 
 import jakarta.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Team {
@@ -11,14 +12,22 @@ public class Team {
     private String name;
     private String coach;
     private String president;
-    private String status;
     private String headquarter;
     private Integer phoneNumber;
     private String website;
+    @OneToOne
+    private Stadium stadium;
+    @ManyToOne
+    private League league;
+
+    @ManyToMany
+    private Collection<Match> matches;
 
     public Team() {}
 
     public Team(
+            League league,
+            Stadium stadium,
             String name,
             String coach,
             String president,
@@ -26,35 +35,14 @@ public class Team {
             Integer phoneNumber,
             String website
     ) {
+        this.league = league;
+        this.stadium = stadium;
         this.name = name;
         this.coach = coach;
         this.president = president;
         this.headquarter = headquarter;
         this.phoneNumber = phoneNumber;
         this.website = website;
-
-    }
-
-    @OneToOne
-    @JoinColumn(name = "stadium_id")
-    private Stadium stadium;
-
-    @ManyToOne
-    @JoinColumn(name = "league_id")
-    private League league;
-
-    @OneToOne(orphanRemoval = true)
-    @JoinTable(name = "Team_match",
-            joinColumns = @JoinColumn(name = "team_id"),
-            inverseJoinColumns = @JoinColumn(name = "match_id"))
-    private Match match;
-
-    public Match getMatch() {
-        return match;
-    }
-
-    public void setMatch(Match match) {
-        this.match = match;
     }
 
     public League getLeague() {
@@ -127,5 +115,17 @@ public class Team {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public Collection<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Collection<Match> matches) {
+        this.matches = matches;
+    }
+
+    public void addMatch(Match match) {
+        this.matches.add(match);
     }
 }

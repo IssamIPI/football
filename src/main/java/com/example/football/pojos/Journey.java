@@ -2,10 +2,7 @@ package com.example.football.pojos;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Journey {
@@ -18,24 +15,16 @@ public class Journey {
     @JoinColumn(name = "league_id")
     private League league;
 
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(name = "journey_id")
-    private Set<Match> matches = new LinkedHashSet<>();
-
-    public Journey() {}
-
     public Journey(
-            Integer number
+            Integer number,
+            League league
     ) {
         this.number = number;
+        this.league = league;
     }
 
-    public Set<Match> getMatches() {
-        return matches;
-    }
+    public Journey() {
 
-    public void setMatches(Set<Match> matches) {
-        this.matches = matches;
     }
 
     public League getLeague() {

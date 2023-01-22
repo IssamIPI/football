@@ -2,6 +2,8 @@ package com.example.football.pojos;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
 public class Stadium {
     @Id
@@ -9,35 +11,23 @@ public class Stadium {
     @Column(name = "id", nullable = false)
     private Long id;
     private String name;
+
+    @OneToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
     private String address;
     private Integer capacity;
-
-    @OneToOne(orphanRemoval = true)
-    @JoinTable(name = "Stadium_team",
-            joinColumns = @JoinColumn(name = "stadium_id"),
-            inverseJoinColumns = @JoinColumn(name = "team_id"))
-    private Team team;
 
     public Stadium() {}
 
     public Stadium(
             String name,
-            Team team,
             String address,
             Integer capacity
     ) {
         this.name = name;
-        this.team = team;
         this.address = address;
         this.capacity = capacity;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 
     public Long getId() {
@@ -70,5 +60,28 @@ public class Stadium {
 
     public void setCapacity(Integer capacity) {
         this.capacity = capacity;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    @OneToMany(mappedBy = "stadium")
+    private Collection<Match> matches;
+
+    public Collection<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Collection<Match> matches) {
+        this.matches = matches;
+    }
+
+    public void addMatch(Match match) {
+        this.matches.add(match);
     }
 }

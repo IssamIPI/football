@@ -1,6 +1,7 @@
 package com.example.football.pojos;
 
 import jakarta.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -11,9 +12,27 @@ public class User {
     private String lastname;
     private String firstname;
     private String login;
+    @Size(min = 6, message = "Le mot de passe doit comptenir au moins 6 cractères")
     private String password;
     private String pseudo;
-    private String mail;
+
+    public User(
+            String firstname,
+            String lastname,
+            String login,
+            String password,
+            String pseudo
+    ) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.login = login;
+        this.password = password;
+        this.pseudo = pseudo;
+    }
+
+    public User() {
+
+    }
 
     public Long getId() {
         return id;
@@ -61,13 +80,5 @@ public class User {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
     }
 }
