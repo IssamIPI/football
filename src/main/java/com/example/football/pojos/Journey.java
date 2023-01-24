@@ -1,7 +1,6 @@
 package com.example.football.pojos;
 
 import jakarta.persistence.*;
-
 import java.util.*;
 
 @Entity
@@ -14,6 +13,9 @@ public class Journey {
     @ManyToOne
     @JoinColumn(name = "league_id")
     private League league;
+
+    @OneToMany(mappedBy = "journey")
+    private Collection<Match> matches;
 
     public Journey(
             Integer number,
@@ -49,5 +51,13 @@ public class Journey {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public Collection<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Collection<Match> matches) {
+        this.matches = matches;
     }
 }

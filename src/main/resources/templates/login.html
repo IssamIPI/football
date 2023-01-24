@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../../../../../../../drive-download-20230123T202909Z-001/static/css/style.css" data-th-href="@{/css/style.css}" />
+</head>
+<body>
+
+<h1>Bienvenue sur le formulaire de connexion</h1>
+
+<div id="global">
+    <h1>Connexion</h1>
+
+    <div id="inscription">
+        <form method="post" action="login" accept-charset="utf-8" data-th-action="@{'login'}" data-th-object="${login}" >
+            <input id="login" name="login" type="text" class="inputChamp" placeholder="Votre identifiant de connexion *" /><br />
+            <input id="password" name="password" type="password" class="inputChamp" placeholder="Votre mot de passe *" /><br />
+            <br />
+            <input type="submit" value="Connexion" class="submitBtn" />
+            <div id="erreur" data-th-if="${#fields.hasAnyErrors()}">
+                <p data-th-each="err : ${#fields.allErrors()}" data-th-text="${err}"></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

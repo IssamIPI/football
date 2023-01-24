@@ -5,5 +5,7 @@ import com.example.football.pojos.League;
 
 public interface JourneyService {
 
+    Journey getOneJourneyById(Long id);
+    Iterable<Journey> getAllJourneys();
     Iterable<Journey> getJourneysByLeague(League league);
 }

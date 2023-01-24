@@ -13,6 +13,16 @@ public class JourneyServiceImpl implements JourneyService {
     private JourneyRepository journeyRepository;
 
     @Override
+    public Journey getOneJourneyById(Long id) {
+        return journeyRepository.findJourneyById(id);
+    }
+
+    @Override
+    public Iterable<Journey> getAllJourneys() {
+        return journeyRepository.findAll();
+    }
+
+    @Override
     public Iterable<Journey> getJourneysByLeague(League league) {
         return journeyRepository.findJourneysByLeague(league);
     }

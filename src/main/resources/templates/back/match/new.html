@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un nouveau match</title>
+</head>
+<body>
+    <h1>Créer un nouveau match</h1>
+
+    <form action="#" method="post" data-th-action="@{'/admin/newMatch'}" data-th-object="${matchForm}">
+        <label for="homeTeam">Equipe à domicile</label>
+        <select name="homeTeamId" id="homeTeam" class="select">
+            <option data-th-each="team : ${ teams }" data-th-text="${team.name}" data-th-value="${team.id}"></option>
+        </select>
+        <br>
+        <label for="awayTeam">Equipe à l'extérieur</label>
+        <select name="awayTeamId" id="awayTeam" class="select">
+            <option data-th-each="team : ${ teams }" data-th-text="${team.name}" data-th-value="${team.id}"></option>
+        </select>
+        <br>
+        <label for="journeyLeague">Choisir la journée du championnat à associer</label>
+        <select name="journeyId" id="journeyLeague" class="select">
+            <option data-th-each="journey : ${ journeys }" data-th-text="${journey.league.name} + ' -  journée n°' + ${journey.number}" data-th-value="${journey.id}"></option>
+        </select>
+        <br>
+        <input type="submit" value="Créer" class="submitBtn" />
+    </form>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package com.example.football.pojos;
 
 import jakarta.persistence.*;
+
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -9,11 +11,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Long id;
+    @NotBlank(message = "Le nom est obligatoire")
     private String lastname;
+    @NotBlank(message = "Le prénom est obligatoire")
     private String firstname;
+    @NotBlank(message = "Le login est obligatoire")
     private String login;
     @Size(min = 6, message = "Le mot de passe doit comptenir au moins 6 cractères")
+    @NotBlank(message = "Le mot de passe est obligatoire")
     private String password;
+    @NotBlank(message = "Le pseudo est obligatoire")
     private String pseudo;
 
     public User(
@@ -80,5 +87,18 @@ public class User {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
+    }
+
+    // toString
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nom='" + lastname + '\'' +
+                ", prenom='" + firstname + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", password='" + password + '\'' +
+                ", identifiant='" + login + '\'' +
+                '}';
     }
 }

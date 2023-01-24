@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JourneyRepository extends CrudRepository<Journey, Long> {
 
+    Journey findJourneyById(Long id);
     Iterable<Journey> findJourneysByLeague(League league);
 }
