@@ -10,4 +10,6 @@ public interface TeamService {
     Iterable<Team> getTeamsFromLeague(League league);
 
     Iterable<Team> getAllTeams();
+
+    Team addNewTeam(Team team);
 }

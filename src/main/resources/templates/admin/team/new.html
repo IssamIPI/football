@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer une nouvelle équipe</title>
+</head>
+<body>
+<style>
+    h1 {
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        grid-gap: 10px;
+    }
+</style>
+    <h1>Formulaire de création d'un nouveau stade</h1>
+    <form action="#" method="post" data-th-action="@{'/admin/newTeam'}" data-th-object="${teamForm}">
+        <label for="name">Nom d'équipe</label>
+        <input type="text" id="name" name="name" placeholder="Athletico Madrid">
+
+        <label for="coach">Nom de l'entraineur</label>
+        <input type="text" id="coach" name="coach" placeholder="Zinedine Zidane">
+
+        <label for="president">Nom du président du club</label>
+        <input type="text" id="president" name="president" placeholder="William Zsoug">
+
+        <label for="headquarter">Lieu du club</label>
+        <input type="text" id="headquarter" name="headquarter" placeholder="Paris 75000">
+
+        <label for="phoneNumber">Lieu du club</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="0645954595">
+
+        <label for="website">Site officiel</label>
+        <input type="text" id="website" name="website" placeholder="psg.com">
+
+        <label for="leagueId">Choisir le championnat à associer</label>
+        <select name="leagueId" id="leagueId" class="select">
+            <option data-th-each="league : ${ leagues }" data-th-text="${league.name}" data-th-value="${league.id}"></option>
+        </select>
+
+        <label for="stadiumId">Choisir le stade à associer</label>
+        <select name="stadiumId" id="stadiumId" class="select">
+            <option data-th-each="stadium : ${ stadiums }" data-th-text="${stadium.name}" data-th-value="${stadium.id}"></option>
+        </select>
+        <input type="submit" value="Créer" class="submitBtn" />
+    </form>
+</body>
+</html>

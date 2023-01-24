@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StadiumRepository extends CrudRepository<Stadium, Long> {
+
+    Stadium findStadiumById(long id);
 }

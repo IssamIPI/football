@@ -1,4 +1,4 @@
-package com.example.football.controllers.backoffice;
+package com.example.football.controllers.admin;
 
 import com.example.football.forms.MatchForm;
 import com.example.football.pojos.Journey;
@@ -12,7 +12,6 @@ import com.example.football.services.TeamService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -51,7 +50,7 @@ public class MatchController {
         model.addAttribute("journeys", journeys);
         model.addAttribute("leagues", leagues);
 
-        return "back/match/new";
+        return "admin/match/new";
     }
 
     @RequestMapping(value = "/newMatch", method = RequestMethod.POST)

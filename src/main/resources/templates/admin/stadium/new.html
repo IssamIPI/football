@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un nouveau stade</title>
+</head>
+<body>
+    <h1>Formulaire de création d'un nouveau stade</h1>
+
+    <form action="#" method="post" data-th-action="@{'/admin/newStadium'}" data-th-object="${stadium}">
+        <label for="name">Nom du stade</label>
+        <input type="text" id="name" name="name" placeholder="Parc des princes">
+
+        <label for="address">Localisation du stade</label>
+        <input type="text" id="address" name="address" placeholder="Paris, FRA">
+
+        <label for="capacity">Capacité d'accueil</label>
+        <input type="text" id="capacity" name="capacity" placeholder="45000">
+
+        <input type="submit" value="Créer stade" class="submitBtn" />
+    </form>
+</body>
+</html>
