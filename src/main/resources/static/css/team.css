@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    padding: 50px;
+    background: linear-gradient(90deg, rgb(54, 111, 255) 0%, rgb(92, 255, 74) 100%);
+    width: 100%;
+}
+h1 {
+    text-align: center ;
+}
+
+.team-league-infos,
+.team-general-infos {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    background: rgba(255,255,255,50%);
+}

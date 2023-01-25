@@ -66,13 +66,15 @@ public class MatchController {
         Team awayTeam = teamService.getOneTeamById(awayTeamId);
         Journey journey = journeyService.getOneJourneyById(journeyId);
 
+
         Match match = new Match();
         match.setHomeTeam(homeTeam);
         match.setAwayTeam(awayTeam);
         match.setJourney(journey);
         match.setStadium(homeTeam.getStadium());
         matchService.addNewMatch(match);
+        journey.addMatch(match);
 
-        return "test";
+        return "admin/index";
     }
 }

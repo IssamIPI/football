@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/team.css" data-th-href="@{/css/team.css}" />
+    <title data-th-text="${team.name}"></title>
+</head>
+<body>
+  <h1 data-th-text="${team.name}"></h1>
+
+  <div class="team-general-infos">
+    <h2>Informations générales</h2>
+    <p data-th-text="'Nom : ' + ${team.name}"></p>
+    <p data-th-text="'Championnat associé : ' + ${team.league.name}"></p>
+    <p data-th-text="'Nom du coach : ' + ${team.coach}"></p>
+    <p data-th-text="'Nom du président : ' + ${team.president}"></p>
+    <p data-th-text="'Stade : ' + ${team.stadium.name}"></p>
+    <p data-th-text="'QG : ' + ${team.headquarter}"></p>
+    <p data-th-text="'Numéro de téléphone : ' + ${team.phoneNumber}"></p>
+    <p data-th-text="'Site internet : ' + ${team.website}"></p>
+  </div>
+
+  <div class="team-league-infos">
+    <h2>Informations sur le championnat</h2>
+    <p data-th-text="'Nombre total de points : ' + ${team.totalPoints}"></p>
+    <p data-th-text="'Nombre total de buts : ' + ${team.totalGoals}"></p>
+    <p data-th-text="'Nombre de matchs gagnés : ' + ${team.totalWins}"></p>
+    <p data-th-text="'Nombre de matchs perdus : ' + ${team.totalDefeats}"></p>
+    <p data-th-text="'Nombre de matchs égalité : ' + ${team.totalTies}"></p>
+  </div>
+
+</body>
+</html>

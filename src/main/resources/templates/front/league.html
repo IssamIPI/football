@@ -2,201 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/league.css" data-th-href="@{/css/league.css}" />
+    <title data-th-text="${league.name}"></title>
 </head>
 <body>
-<h1 data-th-text="${league.name}"></h1>
 
-<!--Afficher les équipes avec leurs points-->
-<div data-th-each="team : ${ teams }">
-    <h3 data-th-text="${team.name}"></h3>
-</div>
+<h1>Championnat</h1>
+<h2 data-th-text="${league.name}"></h2>
+<section class="journeys">
+    <div class="journey" data-th-each="journey : ${ journeys }">
+        <h3 data-th-text="'Journée n° ' + ${journey.number}"></h3>
+        <div class="matches">
+            <div class="match" data-th-each="match : ${ journey.matches }">
+                <p class="homeTeam" data-th-text="${match.homeTeam.name}"></p>
+                <span class="homeTeamGoals"  data-th-if="${match.goalsFromHomeTeam == null}">N/A</span>
+                <span class="homeTeamGoals"  data-th-unless="${match.goalsFromHomeTeam == null}" data-th-text="${match.goalsFromHomeTeam}"></span>
+                <span class="separatorScore"> - </span>
+                <span class="awayTeamGoals" data-th-if="${match.goalsFromAwayTeam == null}">N/A</span>
+                <span class="awayTeamGoals" data-th-unless="${match.goalsFromAwayTeam == null}" data-th-text="${match.goalsFromAwayTeam}"></span>
+                <p class="awayTeam" data-th-text="${match.awayTeam.name}"></p>
+            </div>
+        </div>
+    </div>
+</section>
 
-<!--Afficher les différentes journées de cette ligues-->
-<div data-th-each="journey : ${ journeys }">
-    <p data-th-text="${journey.number}"></p>
-</div>
-<!--Pour chaque journée il faut afficher les équipes qui se rencontrent-->
-
-
-
-
-
-<!--&lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-<!--<style>-->
-<!--    * {-->
-<!--        margin: 0;-->
-<!--        padding: 0;-->
-<!--    }-->
-<!--    body {-->
-<!--        padding: 50px;-->
-<!--    }-->
-<!--    h1 {-->
-<!--        text-align: center ;-->
-<!--    }-->
-<!--    .match {-->
-<!--        display: flex;-->
-<!--    }-->
-<!--    .match > span {-->
-<!--        margin: 0 10px;-->
-<!--    }-->
-<!--    .journey {-->
-<!--        padding: 20px 0 0 0;-->
-<!--    }-->
-<!--    .journey:not(:last-child) {-->
-<!--        padding-bottom: 20px;-->
-<!--    }-->
-
-<!--    .homeTeam,-->
-<!--    .homeTeamGoals,-->
-<!--    .awayTeam,-->
-<!--    .awayTeamGoals {-->
-<!--        width: 15%;-->
-<!--        text-align: center;-->
-<!--    }-->
-
-<!--    .homeTeamGoals,-->
-<!--    .awayTeamGoals {-->
-<!--        width: 5%;-->
-<!--    }-->
-<!--</style>-->
-
-<!--<h1 data-th-text="${league.name}">Championnat : Ligue des champions</h1>-->
-<!--<section class="journeys">-->
-<!--    <div class="journey" data-th-each="journey : ${ journeys }">-->
-<!--        <h3 data-th-text="${journey.number}">Journée n° 10</h3>-->
-<!--        <div class="matches" data-th-each="match : ${ journeys.matches }">-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Lyon</p>-->
-<!--                <span class="homeTeamGoals">4</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">2</span>-->
-<!--                <p class="awayTeam">Saint Etienne</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Paris</p>-->
-<!--                <span class="homeTeamGoals">2</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">4</span>-->
-<!--                <p class="awayTeam">Marseille</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Auxerre</p>-->
-<!--                <span class="homeTeamGoals">1</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">0</span>-->
-<!--                <p class="awayTeam">Nantes</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Bordeaux</p>-->
-<!--                <span class="homeTeamGoals">2</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">3</span>-->
-<!--                <p class="awayTeam">Montpellier</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="journey" data-th-each="journey : ${ journeys }">-->
-<!--        <h3 data-th-text="${journey.number}">Journée n° 11</h3>-->
-<!--        <div class="matches" data-th-each="match : ${ journeys.matches }">-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Lyon</p>-->
-<!--                <span class="homeTeamGoals">4</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">2</span>-->
-<!--                <p class="awayTeam">Saint Etienne</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Paris</p>-->
-<!--                <span class="homeTeamGoals">2</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">4</span>-->
-<!--                <p class="awayTeam">Marseille</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Auxerre</p>-->
-<!--                <span class="homeTeamGoals">1</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">0</span>-->
-<!--                <p class="awayTeam">Nantes</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Bordeaux</p>-->
-<!--                <span class="homeTeamGoals">2</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">3</span>-->
-<!--                <p class="awayTeam">Montpellier</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="journey" data-th-each="journey : ${ journeys }">-->
-<!--        <h3 data-th-text="${journey.number}">Journée n° 12</h3>-->
-<!--        <div class="matches" data-th-each="match : ${ journeys.matches }">-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Lyon</p>-->
-<!--                <span class="homeTeamGoals">4</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">2</span>-->
-<!--                <p class="awayTeam">Saint Etienne</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Paris</p>-->
-<!--                <span class="homeTeamGoals">2</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">4</span>-->
-<!--                <p class="awayTeam">Marseille</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Auxerre</p>-->
-<!--                <span class="homeTeamGoals">1</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">0</span>-->
-<!--                <p class="awayTeam">Nantes</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Bordeaux</p>-->
-<!--                <span class="homeTeamGoals">2</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">3</span>-->
-<!--                <p class="awayTeam">Montpellier</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="journey" data-th-each="journey : ${ journeys }">-->
-<!--        <h3 data-th-text="${journey.number}">Journée n° 13</h3>-->
-<!--        <div class="matches" data-th-each="match : ${ journeys.matches }">-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Lyon</p>-->
-<!--                <span class="homeTeamGoals">4</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">2</span>-->
-<!--                <p class="awayTeam">Saint Etienne</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Paris</p>-->
-<!--                <span class="homeTeamGoals">2</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">4</span>-->
-<!--                <p class="awayTeam">Marseille</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Auxerre</p>-->
-<!--                <span class="homeTeamGoals">1</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">0</span>-->
-<!--                <p class="awayTeam">Nantes</p>-->
-<!--            </div>-->
-<!--            <div class="match">-->
-<!--                <p class="homeTeam">Bordeaux</p>-->
-<!--                <span class="homeTeamGoals">2</span>-->
-<!--                <span class="separatorScore"> - </span>-->
-<!--                <span class="awayTeamGoals">3</span>-->
-<!--                <p class="awayTeam">Montpellier</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
-<!--&lt;!&ndash; -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-
+<section class="teams-ranking">
+    <h2>Classement des équipes</h2>
+    <table class="teamRanked">
+        <thead>
+        <tr>
+            <th class="teamName">Nom équipe</th>
+            <th class="teamPoints">Points</th>
+            <th class="teamGoals">Buts</th>
+            <th class="teamMatchsWin">Gagnés</th>
+            <th class="teamMatchsLoose">Perdus</th>
+            <th class="teamMatchsTie">Egalités</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="teamStats" data-th-each="team: ${teams}">
+            <td class="teamName" data-th-text="${team.name}"></td>
+            <td class="teamTotalPoints" data-th-text="${team.totalPoints}"></td>
+            <td class="teamTotalGoals" data-th-text="${team.totalGoals}"></td>
+            <td class="teamTotalWins" data-th-text="${team.totalWins}"></td>
+            <td class="teamTotalDefeats" data-th-text="${team.totalDefeats}"></td>
+            <td class="teamTotalTies" data-th-text="${team.totalTies}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
 
 </body>
 </html>

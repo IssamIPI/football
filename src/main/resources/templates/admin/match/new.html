@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/admin/style.css" data-th-href="@{/css/admin/styles.css}" />
     <title>Créer un nouveau match</title>
 </head>
 <body>
-    <h1>Créer un nouveau match</h1>
+
+    <h1>Formulaire de création d'un nouveau match</h1>
 
     <form action="#" method="post" data-th-action="@{'/admin/newMatch'}" data-th-object="${matchForm}">
         <label for="homeTeam">Equipe à domicile</label>

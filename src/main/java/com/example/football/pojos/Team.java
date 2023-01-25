@@ -19,9 +19,14 @@ public class Team {
     private Stadium stadium;
     @ManyToOne
     private League league;
-
     @ManyToMany
     private Collection<Match> matches;
+
+    private Integer totalPoints;
+    private Integer totalGoals;
+    private Integer totalWins;
+    private Integer totalDefeats;
+    private Integer totalTies;
 
     public Team() {}
 
@@ -127,5 +132,58 @@ public class Team {
 
     public void addMatch(Match match) {
         this.matches.add(match);
+    }
+
+    public Integer getTotalPoints() {
+        return totalPoints;
+    }
+
+    public void setTotalPoints(Integer totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+
+    public Integer getTotalGoals() {
+        return totalGoals;
+    }
+
+    public void setTotalGoals(Integer totalGoals) {
+        this.totalGoals = totalGoals;
+    }
+
+    public Integer getTotalWins() {
+        return totalWins;
+    }
+
+    public void setTotalWins(Integer totalWins) {
+        this.totalWins = totalWins;
+    }
+
+    public Integer getTotalDefeats() {
+        return totalDefeats;
+    }
+
+    public void setTotalDefeats(Integer totalDefeats) {
+        this.totalDefeats = totalDefeats;
+    }
+
+    public Integer getTotalTies() {
+        return totalTies;
+    }
+
+    public void setTotalTies(Integer totalTies) {
+        this.totalTies = totalTies;
+    }
+
+    public void incrementWin()
+    {
+        this.totalWins++;
+    }
+    public void incrementDefeat()
+    {
+        this.totalDefeats++;
+    }
+    public void incrementTie()
+    {
+        this.totalTies++;
     }
 }

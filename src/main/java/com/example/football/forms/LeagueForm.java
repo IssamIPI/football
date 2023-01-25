@@ -1,19 +1,17 @@
-package com.example.football.pojos;
+package com.example.football.forms;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-public class League {
+public class LeagueForm {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Long id;
+
     private String name;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date startDate;
@@ -22,25 +20,9 @@ public class League {
     private Integer victoryPoints;
     private Integer defeatPoints;
     private Integer tiePoints;
+    private Integer countryId;
 
-    @OneToMany(targetEntity = Journey.class, mappedBy = "league")
-    private List<Journey> journeys = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "country_id")
-    private Country country;
-    @OneToMany(mappedBy = "league")
-    private Collection<Team> team;
-
-    public League() {}
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
+    public LeagueForm() {}
 
     public Long getId() {
         return id;
@@ -98,19 +80,11 @@ public class League {
         this.tiePoints = tiePoints;
     }
 
-    public List<Journey> getJourneys() {
-        return journeys;
+    public Integer getCountryId() {
+        return countryId;
     }
 
-    public void setJourneys(List<Journey> journeys) {
-        this.journeys = journeys;
-    }
-
-    public Collection<Team> getTeams() {
-        return team;
-    }
-
-    public void setTeams(Collection<Team> team) {
-        this.team = team;
+    public void setCountryId(Integer countryId) {
+        this.countryId = countryId;
     }
 }

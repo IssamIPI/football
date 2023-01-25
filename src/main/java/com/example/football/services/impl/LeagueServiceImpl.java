@@ -6,8 +6,6 @@ import com.example.football.services.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class LeagueServiceImpl implements LeagueService {
 
@@ -22,5 +20,10 @@ public class LeagueServiceImpl implements LeagueService {
     @Override
     public Iterable<League> getAllLeagues() {
         return leagueRepository.findAll();
+    }
+
+    @Override
+    public League addNewLeague(League league) {
+        return leagueRepository.save(league);
     }
 }

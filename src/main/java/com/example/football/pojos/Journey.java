@@ -60,4 +60,8 @@ public class Journey {
     public void setMatches(Collection<Match> matches) {
         this.matches = matches;
     }
+
+    public void addMatch(Match match) {
+        this.matches.add(match);
+    }
 }

@@ -2,49 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../static/css/ranking.css" data-th-href="@{/css/ranking.css}" />
     <title>Ranking football</title>
 </head>
 <body>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    body {
-        padding: 50px;
-    }
-    h1 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .team {
-        width: 75vw;
-        margin: auto;
-        background: beige;
-        padding: 20px;
-        justify-content: space-between;
-    }
-    .team > thead > tr > th,
-    .team > tbody > tr > td {
-        text-align: end;
-        padding: 5px;
-    }
 
-    .team > thead > tr > th.teamName,
-    .team > tbody > tr > td.teamName {
-        text-align: start;
-    }
-
-    .team > tbody > tr:nth-last-child(odd) {
-        background: #d3d37c;
-    }
-
-    .team > tbody > tr:nth-last-child(even) {
-        background: #4af19d;
-    }
-</style>
-
-<h1>Voici le classement des équipes - Ligue des Champions</h1>
+<h1>Voici le classement des équipes</h1>
 
 <div class="ranking">
     <table class="team">
@@ -59,38 +22,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="teamStats">
-            <td class="teamName">Lyon</td>
-            <td class="teamPoints">43</td>
-            <td class="teamGoals">50</td>
-            <td class="teamMatchsWin">6</td>
-            <td class="teamMatchsLoose">1</td>
-            <td class="teamMatchsTie">3</td>
-        </tr>
-        <tr class="teamStats">
-            <td class="teamName">Paris</td>
-            <td class="teamPoints">43</td>
-            <td class="teamGoals">50</td>
-            <td class="teamMatchsWin">6</td>
-            <td class="teamMatchsLoose">1</td>
-            <td class="teamMatchsTie">3</td>
-        </tr>
-        <tr class="teamStats">
-            <td class="teamName">Marseille</td>
-            <td class="teamPoints">43</td>
-            <td class="teamGoals">50</td>
-            <td class="teamMatchsWin">6</td>
-            <td class="teamMatchsLoose">1</td>
-            <td class="teamMatchsTie">3</td>
-        </tr>
-        <tr class="teamStats">
-            <td class="teamName">Toulouse</td>
-            <td class="teamPoints">43</td>
-            <td class="teamGoals">50</td>
-            <td class="teamMatchsWin">6</td>
-            <td class="teamMatchsLoose">1</td>
-            <td class="teamMatchsTie">3</td>
-        </tr>
+            <tr class="teamStats" data-th-each="team: ${teams}">
+                <td class="teamName" data-th-text="${team.name}"></td>
+                <td class="teamTotalPoints" data-th-text="${team.totalPoints}"></td>
+                <td class="teamTotalGoals" data-th-text="${team.totalGoals}"></td>
+                <td class="teamTotalWins" data-th-text="${team.totalWins}"></td>
+                <td class="teamTotalDefeats" data-th-text="${team.totalDefeats}"></td>
+                <td class="teamTotalTies" data-th-text="${team.totalTies}"></td>
+            </tr>
         </tbody>
     </table>
 </div>

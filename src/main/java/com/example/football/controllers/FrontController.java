@@ -34,11 +34,11 @@ public class FrontController {
     }
 
 //    Afficher tout les championnats
-    @GetMapping(path = "/leagues")
+    @GetMapping(path = {"/", "/leagues"})
     public String leaguesIndex(Model model)
     {
-        // envoie les données à la vue
         model.addAttribute("allLeagues", leagueService.getAllLeagues());
+        model.addAttribute("teams", teamService.getAllTeams());
 
         return "front/leagues";
     }
@@ -48,25 +48,20 @@ public class FrontController {
     public String showLeague(Model model, @RequestParam long idLeague)
     {
         League selectedLeague = leagueService.getOneLeagueById(idLeague);
-        Iterable<Journey> journeys = journeyService.getJourneysByLeague(selectedLeague);
-        Iterable<Team> teams = teamService.getTeamsFromLeague(selectedLeague);
 
         model.addAttribute("league", selectedLeague);
-        model.addAttribute("journeys", journeys);
-        model.addAttribute("teams", teams);
+        model.addAttribute("journeys", journeyService.getJourneysByLeague(selectedLeague));
+
+        model.addAttribute("teams", teamService.getAllTeamsRankedByLeague(selectedLeague));
 
         return "front/league";
     }
 
     //    Afficher les détails d'une équipe sélectionné
     @GetMapping(path = "/team")
-    public String showTeamFromLeague(Model model, @RequestParam long idLeague, @RequestParam long idTeam)
+    public String showTeamFromLeague(Model model, @RequestParam long idTeam)
     {
-        League selectedLeague = leagueService.getOneLeagueById(idLeague);
-        Team selectedTeam = teamService.getOneTeamById(idTeam);
-
-        model.addAttribute("league", selectedLeague);
-        model.addAttribute("team", selectedTeam);
+        model.addAttribute("team", teamService.getOneTeamById(idTeam));
 
         return "front/team";
     }

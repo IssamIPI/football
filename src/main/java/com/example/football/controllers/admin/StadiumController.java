@@ -36,6 +36,6 @@ public class StadiumController {
         stadiumService.addNewStadium(stadium);
         model.addAttribute("stadium", stadium);
 
-        return "test";
+        return "admin/index";
     }
 }

@@ -1,0 +1,78 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 10%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgb(255 163 54) 0%, rgb(255 90 74) 100%);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Admin index page */
+.admin-actions {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+}
+.admin-actions > a {
+    text-decoration: none;
+    text-align: center;
+    color: whitesmoke;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid whitesmoke;
+    background: #313131;
+    transition: all 0.5s ease;
+}
+
+.admin-actions > a:hover {
+    color: #313131;
+    background: whitesmoke;
+    border: 2px solid lightgrey;
+
+}
+
+/*Admin league form - new*/
+ h1 {
+     text-align: center;
+ }
+
+form {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 20px;
+    width: fit-content;
+}
+
+label {
+    color: whitesmoke;
+}
+
+button,
+input,
+select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid lightgray;
+}
+/*Admin match form - new*/
+
+
+
+/*Admin team form - new*/
+
+
+
+/*Admin stadium form - new*/

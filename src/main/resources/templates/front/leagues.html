@@ -2,15 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Leagues</title>
+    <link rel="stylesheet" href="../../static/css/league.css" data-th-href="@{/css/league.css}" />
+    <title>Championnats</title>
 </head>
 <body>
 
-<h1>Football - Les championnats</h1>
+<h1>Football</h1>
 
-<div data-th-each="league : ${ allLeagues }">
-    <a href="league?idLeague=" data-th-href="@{'/league?idLeague=' + ${league.id}}" data-th-text="${league.name}"></a>
+<h2>Les championnats</h2>
+<div class="btnLeague" data-th-each="league : ${ allLeagues }">
+    <a data-th-href="@{'/league?idLeague=' + ${league.id}}" data-th-text="${league.name}"></a>
 </div>
+
+<hr>
+
+
+<section class="teams">
+    <h2>Les équipes</h2>
+    <div class="team" data-th-each="team : ${ teams }">
+        <a data-th-text="${team.name}" data-th-href="@{'/team?idTeam=' + ${team.id}}"></a>
+    </div>
+</section>
 
 </body>
 </html>

@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    padding: 50px;
+    background: linear-gradient(90deg, rgb(54, 111, 255) 0%, rgb(92, 255, 74) 100%);
+    width: 100%;
+}
+h1, h2 {
+    text-align: center ;
+}
+h2 {
+    margin: 20px
+}
+.btnLeague {
+    margin: 20px;
+    background: #313131;
+    border: 2px solid lightgrey;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: fit-content;
+    transition: all 0.5s ease;
+}
+.btnLeague:hover {
+    background: whitesmoke;
+    border: 2px solid #313131;
+}
+.btnLeague > a {
+    text-decoration: none;
+    color: whitesmoke;
+    transition: all 0.5s ease;
+}
+.btnLeague:hover > a {
+    color: #313131;
+}
+.match {
+    display: flex;
+}
+.match > span {
+    margin: 0 10px;
+}
+.journey {
+    padding: 20px;
+    border: 2px solid black;
+    margin: 20px 0;
+    border-radius: 10px;
+    background: rgba(255,255,255,50%);
+}
+.journey:not(:last-child) {
+    padding-bottom: 20px;
+}
+
+.homeTeam,
+.homeTeamGoals,
+.awayTeam,
+.awayTeamGoals {
+    width: 20%;
+    text-align: center;
+}
+
+.homeTeamGoals,
+.awayTeamGoals {
+    width: 5%;
+}
+
+/*------------*/
+
+.team {
+    width: fit-content;
+    padding: 10px 20px;
+    background: rgba(255,255,255,50%);
+    border-radius: 5px;
+    border: 2px solid blue;
+    margin: 20px;
+    transition: all 0.5s ease;
+}
+.team:hover {
+    background: rgba(0,0,255, 50%);
+}
+.team > a {
+    text-decoration: none;
+    color: blue;
+    transition: all 0.5s ease;
+}
+.team:hover > a {
+    color: whitesmoke;
+}
+/*----------------*/
+
+.teamRanked {
+    width: 75vw;
+    margin: auto;
+    background: rgba(255,255,255,50%);
+    padding: 20px;
+    border-radius: 10px;
+}
+.teamRanked > thead > tr > th,
+.teamRanked > tbody > tr > td {
+    text-align: end;
+    padding: 5px;
+}
+
+.teamRanked > thead > tr > th.teamName,
+.teamRanked > tbody > tr > td.teamName {
+    text-align: start;
+}
+
+.teamRanked > tbody > tr:nth-last-child(odd) {
+    background: #d3d37c;
+}
+
+.teamRanked > tbody > tr:nth-last-child(even) {
+    background: #4af19d;
+}

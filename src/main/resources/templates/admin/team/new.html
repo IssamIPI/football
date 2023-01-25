@@ -2,20 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/admin/style.css" data-th-href="@{/css/admin/styles.css}" />
     <title>Créer une nouvelle équipe</title>
 </head>
 <body>
-<style>
-    h1 {
-        text-align: center;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        grid-gap: 10px;
-    }
-</style>
-    <h1>Formulaire de création d'un nouveau stade</h1>
+
+    <h1>Formulaire de création d'une nouvelle équipe</h1>
     <form action="#" method="post" data-th-action="@{'/admin/newTeam'}" data-th-object="${teamForm}">
         <label for="name">Nom d'équipe</label>
         <input type="text" id="name" name="name" placeholder="Athletico Madrid">

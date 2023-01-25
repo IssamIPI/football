@@ -10,6 +10,7 @@ import com.example.football.services.TeamService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,26 +48,31 @@ public class TeamController {
     @RequestMapping(value = "/newTeam", method = RequestMethod.POST)
     public String newMatchSubmit(
             Model model,
-            @ModelAttribute TeamForm teamForm,
+            @Validated @ModelAttribute TeamForm teamForm,
             BindingResult bindingResult
     ) {
-        long stadiumId = teamForm.getStadiumId();
-        long leagueId = teamForm.getLeagueId();
-        Stadium stadium = stadiumService.getOneStadiumById(stadiumId);
-        League league = leagueService.getOneLeagueById(leagueId);
+//        long stadiumId = teamForm.getStadiumId();
+//        long leagueId = teamForm.getLeagueId();
+//        Stadium stadium = stadiumService.getOneStadiumById(stadiumId);
+//        League league = leagueService.getOneLeagueById(leagueId);
 
-        Team team = new Team();
-        team.setName(teamForm.getName());
-        team.setCoach(teamForm.getCoach());
-        team.setHeadquarter(teamForm.getHeadquarter());
-        team.setPhoneNumber(teamForm.getPhoneNumber());
-        team.setPresident(teamForm.getPresident());
-        team.setWebsite(teamForm.getWebsite());
-        team.setStadium(stadium);
-        team.setLeague(league);
-        teamService.addNewTeam(team);
-        model.addAttribute("team", team);
+        System.out.println(teamForm.getLeagueId());
+        System.out.println(teamForm.getStadiumId());
+
+//        Team team = new Team();
+//        team.setName(teamForm.getName());
+//        team.setCoach(teamForm.getCoach());
+//        team.setHeadquarter(teamForm.getHeadquarter());
+//        team.setPhoneNumber(teamForm.getPhoneNumber());
+//        team.setPresident(teamForm.getPresident());
+//        team.setWebsite(teamForm.getWebsite());
+//        team.setStadium(stadium);
+//        team.setLeague(league);
+//        teamService.addNewTeam(team);
+//        model.addAttribute("team", team);
+//        model.addAttribute("stadiumId", teamForm.getStadiumId());
 
         return "test";
+//        return "admin/index";
     }
 }
