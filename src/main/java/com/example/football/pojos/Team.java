@@ -55,7 +55,7 @@ public class Team {
     }
 
     public void setLeague(League league) {
-        this.league = league;
+        this.league= league;
     }
 
     public Stadium getStadium() {

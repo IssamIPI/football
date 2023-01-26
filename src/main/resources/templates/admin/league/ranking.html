@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Barstool Experts</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<header>
+  <h1>Résultats sportifs</h1>
+</header>
+<main>
+  <section id="soccer">
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Victory Points</th>
+        <th>Defeat Points</th>
+        <th>Tie Points</th>
+        <th>Country</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+      <tr th:each="league : ${league}">
+        <td th:text="${league.name}"></td>
+        <td th:text="${league.victoryPoints}"></td>
+        <td th:text="${league.defeatPoints}"></td>
+        <td th:text="${league.tiePoints}"></td>
+        <td th:text="${league.country.name}"></td>
+        <td th:text="${league.startDate}"></td>
+        <td th:text="${league.endDate}"></td>
+      </tr>
+    </table>
+  </section>
+</main>
+<footer>
+  <p>Copyright © 2022 Résultats sportifs</p>
+</footer>
+</body>
+</html>

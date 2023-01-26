@@ -22,4 +22,12 @@ public class MatchServiceImpl implements MatchService {
     public Iterable<Match> getMatchesFromJourney(Journey journey) {
         return matchRepository.findMatchesByJourney(journey);
     }
+    @Override
+    public Iterable<Match> getAllMatches() {
+        return matchRepository.findAll();
+    }
+    @Override
+    public Match getOneMatchById(Long idLeague) {
+        return matchRepository.findById(idLeague).orElse(null);
+    }
 }

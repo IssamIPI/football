@@ -2,6 +2,7 @@ package com.example.football.pojos;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -22,19 +23,23 @@ public class User {
     private String password;
     @NotBlank(message = "Le pseudo est obligatoire")
     private String pseudo;
-
+    @NotBlank(message = "Le mail est obligatoire")
+    @Email
+    private String mail;
     public User(
             String firstname,
             String lastname,
             String login,
             String password,
-            String pseudo
+            String pseudo,
+            String mail
     ) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.login = login;
         this.password = password;
         this.pseudo = pseudo;
+        this.mail = mail;
     }
 
     public User() {
@@ -87,6 +92,14 @@ public class User {
 
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     // toString

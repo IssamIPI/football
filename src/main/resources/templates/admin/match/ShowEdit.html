@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Match</title>
+</head>
+<body>
+<h1>Edit Match</h1>
+<form th:action="@{/admin/editMatch}" method="get">
+    <table>
+        <tr>
+            <th>Select</th>
+            <th>Home Team</th>
+            <th>Journey</th>
+            <th>Away Team</th>
+            <th>Stadium</th>
+            <th>Goals From Home Team</th>
+            <th>Goals From Away Team</th>
+        </tr>
+        <tr th:each="match : ${matches}">
+            <td>
+                <input type="radio" name="id" th:value="${match.id}"/>
+            </td>
+            <td th:text="${match.homeTeam}"></td>
+            <td th:text="${match.journey}"></td>
+            <td th:text="${match.awayTeam}"></td>
+            <td th:text="${match.stadium}"></td>
+            <td th:text="${match.goalsFromHomeTeam}"></td>
+            <td th:text="${match.goalsFromAwayTeam}"></td>
+        </tr>
+    </table>
+    <input type="submit" value="Edit Selected Match"/>
+</form>
+</body>
+</html>

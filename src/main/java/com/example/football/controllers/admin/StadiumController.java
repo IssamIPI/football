@@ -1,6 +1,5 @@
 package com.example.football.controllers.admin;
 
-import com.example.football.forms.MatchForm;
 import com.example.football.pojos.*;
 import com.example.football.services.*;
 import org.springframework.stereotype.Controller;
@@ -36,6 +35,6 @@ public class StadiumController {
         stadiumService.addNewStadium(stadium);
         model.addAttribute("stadium", stadium);
 
-        return "admin/index";
+        return "create";
     }
 }

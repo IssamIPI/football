@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit League</title>
+    <link rel="stylesheet" data-th-href="@{/css/admin/edit.css}" />
+</head>
+<body>
+<h1>Edit League</h1>
+<form th:action="@{/admin/editLeague}" method="get">
+    <input type="submit" value="Edit Selected League"/>
+    <table>
+        <tr>
+            <th>Select</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Victory Points</th>
+            <th>Defeat Points</th>
+            <th>Tie Points</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+        <tr th:each="league : ${leagues}">
+            <td>
+                <input type="radio" name="id" th:value="${league.id}"/>
+            </td>
+            <td th:text="${league.name}"></td>
+            <td th:text="${league.country.name}"></td>
+            <td th:text="${league.victoryPoints}"></td>
+            <td th:text="${league.defeatPoints}"></td>
+            <td th:text="${league.tiePoints}"></td>
+            <td th:text="${#temporals.format(league.startDate, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(league.endDate, 'dd/MM/yyyy')}"></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

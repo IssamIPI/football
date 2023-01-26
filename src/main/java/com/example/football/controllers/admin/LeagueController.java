@@ -1,17 +1,18 @@
 package com.example.football.controllers.admin;
 
 import com.example.football.forms.LeagueForm;
-import com.example.football.forms.MatchForm;
-import com.example.football.pojos.*;
-import com.example.football.services.*;
+import com.example.football.pojos.Country;
+import com.example.football.pojos.League;
+import com.example.football.repository.LeagueRepository;
+import com.example.football.services.CountryService;
+import com.example.football.services.LeagueService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.CountDownLatch;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,6 +35,43 @@ public class LeagueController {
         model.addAttribute("countries", countries);
         return "admin/league/new";
     }
+    @Autowired
+    private LeagueRepository leagueRepository;
+
+    @RequestMapping(value = "/league/ShowEdit", method = RequestMethod.GET)
+    public String editLeaguetable(Model model)
+    {
+        model.addAttribute("leagues", leagueService.getAllLeagues());
+        return "admin/league/ShowEdit";
+    }
+    @RequestMapping(value = "/editLeague", method = RequestMethod.GET)
+    public String editLeague(@RequestParam("id") Long id, Model model) {
+        System.out.println(id);
+        League selectedLeague = leagueService.getOneLeagueById(id);
+
+        model.addAttribute("league", selectedLeague);
+        System.out.println(selectedLeague.getName());
+        Iterable<Country> countries = countryService.getAllCountries();
+        model.addAttribute("countries", countries);
+        return "admin/league/edit";
+    }
+
+
+    @PostMapping("/updateLeague")
+    public String updateLeague(@ModelAttribute("league") League league, BindingResult bindingResult, Model model) {
+        Optional<League> leagueDB = leagueRepository.findById(league.getId());
+        if(leagueDB.isPresent()) {
+            leagueDB.get().setName(league.getName());
+            leagueDB.get().setStartDate(league.getStartDate());
+            leagueDB.get().setEndDate(league.getEndDate());
+            leagueDB.get().setTiePoints(league.getTiePoints());
+            leagueDB.get().setVictoryPoints(league.getVictoryPoints());
+
+            leagueRepository.save(leagueDB.get());
+        }
+        return "redirect:/leagues";
+    }
+
 
     @RequestMapping(value = "/newLeague", method = RequestMethod.POST)
     public String newLeagueSubmit(
@@ -55,6 +93,6 @@ public class LeagueController {
 
         leagueService.addNewLeague(league);
 
-        return "admin/index";
+        return "create";
     }
 }

@@ -3,7 +3,7 @@ package com.example.football.forms;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class LeagueForm {
@@ -14,9 +14,9 @@ public class LeagueForm {
 
     private String name;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date startDate;
+    private LocalDate startDate;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date endDate;
+    private LocalDate endDate;
     private Integer victoryPoints;
     private Integer defeatPoints;
     private Integer tiePoints;
@@ -40,19 +40,19 @@ public class LeagueForm {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

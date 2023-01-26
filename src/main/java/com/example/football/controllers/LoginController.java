@@ -1,14 +1,17 @@
 package com.example.football.controllers;
 
-import com.example.football.pojos.*;
-import com.example.football.repository.*;
-import com.example.football.services.*;
+import com.example.football.pojos.Login;
+import com.example.football.pojos.User;
+import com.example.football.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
@@ -37,7 +40,7 @@ public class LoginController {
 
         // récupère le membre
         if (!bindingResult.hasErrors()) {
-
+            System.out.println(login.getLogin());
             User user = userService.getUserFromLogin(login.getLogin());
             // test si les mdp sont identique
             if (user.getPassword().equals(login.getPassword())) {
@@ -45,7 +48,7 @@ public class LoginController {
                 httpSession.setAttribute("user", user);
 
                 // redirige sur la page d'acceuil
-                return "redirect:/leagues";
+                return "redirect:/admin/";
             }
         }
 

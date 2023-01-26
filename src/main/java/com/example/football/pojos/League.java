@@ -3,10 +3,8 @@ package com.example.football.pojos;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 @Entity
 public class League {
@@ -16,9 +14,9 @@ public class League {
     private Long id;
     private String name;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date startDate;
+    private LocalDate startDate;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date endDate;
+    private LocalDate endDate;
     private Integer victoryPoints;
     private Integer defeatPoints;
     private Integer tiePoints;
@@ -58,19 +56,19 @@ public class League {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

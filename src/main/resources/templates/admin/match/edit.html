@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" data-th-href="@{/css/admin/edit.css}" />
+    <title>Edit league</title>
+</head>
+<body>
+<div class="container">
+    <h1>Edit League</h1>
+    <form th:action="@{/admin/updateMatch}" th:object="${match}" method="post">
+        <button type="submit" class="btn btn-primary">Update Match</button>
+        <div class="form-group">
+            <label>Home Team:</label>
+            <input type="hidden" class="form-control" th:field="*{id}"/>
+            <input type="text" class="form-control" th:field="*{homeTeam}"/>
+        </div>
+        <div class="form-group">
+            <label>Journey:</label>
+            <input type="number" class="form-control" th:field="*{journey}"/>
+        </div>
+        <div class="form-group">
+            <label>Away Team:</label>
+            <input type="text" class="form-control" th:field="*{awayteam}"/>
+        </div>
+        <div class="form-group">
+            <label>Stadium:</label>
+            <input type="text" class="form-control" th:field="*{stadium}"/>
+        </div>
+        <div class="form-group">
+            <label> goals From Home Team:</label>
+            <input type="number" class="form-control" th:field="*{goalsFromHomeTeam}"/>
+        </div>
+        <div class="form-group">
+        <label>goals From Away Team:</label>
+        <input type="number" class="form-control" th:field="*{goalsFromAwayTeam}"/>
+    </div>
+
+    </form>
+</div>
+</body>
+</html>

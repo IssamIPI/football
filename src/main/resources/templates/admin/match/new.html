@@ -22,7 +22,7 @@
         <br>
         <label for="journeyLeague">Choisir la journée du championnat à associer</label>
         <select name="journeyId" id="journeyLeague" class="select">
-            <option data-th-each="journey : ${ journeys }" data-th-text="${journey.league.name} + ' -  journée n°' + ${journey.number}" data-th-value="${journey.id}"></option>
+            <option data-th-each="journey : ${ journeys }" data-th-text=" ' - journée n°' + ${journey.number}" data-th-value="${journey.id}"></option>
         </select>
         <br>
         <input type="submit" value="Créer" class="submitBtn" />

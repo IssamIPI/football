@@ -1,18 +1,19 @@
 package com.example.football.controllers.admin;
 
 import com.example.football.forms.MatchForm;
-import com.example.football.pojos.Journey;
-import com.example.football.pojos.League;
-import com.example.football.pojos.Match;
-import com.example.football.pojos.Team;
+import com.example.football.pojos.*;
+import com.example.football.repository.MatchRepository;
 import com.example.football.services.JourneyService;
 import com.example.football.services.LeagueService;
 import com.example.football.services.MatchService;
 import com.example.football.services.TeamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -75,6 +76,39 @@ public class MatchController {
         matchService.addNewMatch(match);
         journey.addMatch(match);
 
-        return "admin/index";
+        return "create";
+    }
+    @Autowired
+    private MatchRepository matchRepository;
+
+    @RequestMapping(value = "/match/ShowEdit", method = RequestMethod.GET)
+    public String editmatchtable(Model model)
+    {
+        model.addAttribute("match", matchService.getAllMatches());
+        return "admin/match/ShowEdit";
+    }
+    @RequestMapping(value = "/editMatch", method = RequestMethod.GET)
+    public String editLeague(@RequestParam("id") Long id, Model model) {
+        System.out.println(id);
+        Match selectedMatch = matchService.getOneMatchById(id);
+
+        model.addAttribute("match", selectedMatch);
+        return "admin/match/edit";
+    }
+
+
+    @PostMapping("/updateMatch")
+    public String updateLeague(@ModelAttribute("match") Match match, BindingResult bindingResult, Model model) {
+        Optional<Match> matchDB = matchRepository.findById(match.getId());
+        if(matchDB.isPresent()) {
+            matchDB.get().setGoalsFromHomeTeam(match.getGoalsFromHomeTeam());
+            matchDB.get().setGoalsFromAwayTeam(match.getGoalsFromAwayTeam());
+            matchDB.get().setStadium(match.getStadium());
+            matchDB.get().setJourney(match.getJourney());
+            matchDB.get().setAwayTeam(match.getAwayTeam());
+            matchDB.get().setHomeTeam(match.getHomeTeam());
+            matchRepository.save(matchDB.get());
+        }
+        return "redirect:/leagues";
     }
 }

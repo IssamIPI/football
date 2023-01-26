@@ -13,7 +13,9 @@
 <div class="btnLeague" data-th-each="league : ${ allLeagues }">
     <a data-th-href="@{'/league?idLeague=' + ${league.id}}" data-th-text="${league.name}"></a>
 </div>
-
+<a href="/login">
+    <button class="login-button">Admin Login</button>
+</a>
 <hr>
 
 
